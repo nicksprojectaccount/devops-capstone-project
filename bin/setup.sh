@@ -3,15 +3,15 @@ echo "****************************************"
 echo " Setting up Capstone Environment"
 echo "****************************************"
 
-echo "Installing Python 3.9 and Virtual Environment"
+echo "Installing Python 3.6 and Virtual Environment"
 sudo apt-get update
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3.9 python3.9-venv
 
 echo "Checking the Python version..."
-python3.9 --version
+python3.6 --version
 
 echo "Creating a Python virtual environment"
-python3.9 -m venv ~/venv
+python3.6 -m venv ~/venv
 
 echo "Configuring the developer environment..."
 echo "# DevOps Capstone Project additions" >> ~/.bashrc
@@ -20,7 +20,7 @@ echo 'export PS1="\[\e]0;\u:\W\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32
 echo "source ~/venv/bin/activate" >> ~/.bashrc
 
 echo "Installing Python dependencies..."
-source ~/venv/bin/activate && python3.9 -m pip install --upgrade pip wheel
+source ~/venv/bin/activate && python3.6 -m pip install --upgrade pip wheel
 source ~/venv/bin/activate && pip install -r requirements.txt
 
 echo "Starting the Postgres Docker container..."
