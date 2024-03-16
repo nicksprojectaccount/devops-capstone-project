@@ -5,7 +5,7 @@ echo "****************************************"
 
 echo "Installing Python 3.6 and Virtual Environment"
 sudo apt-get update
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3.9 python3.9-venv
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y python3 python3-venv
 
 echo "Checking the Python version..."
 python3.6 --version
