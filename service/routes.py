@@ -79,7 +79,7 @@ def get_accounts(account_id):
     app.logger.info("Request to read an account by ID: %s", account_id)
     account = Account.find(account_id)
     if not account:
-        abort(status.HTTP_404_NOT_FOUND, f"Account by id [{account_id}] not found")
+        return(status.HTTP_404_NOT_FOUND, f"Account by id [{account_id}] not found")
     
     return account.serialize(), status.HTTP_200_OK
 
@@ -116,7 +116,7 @@ def delete_accounts(account_id):
     app.logger.info("Req to delete account by id: %s", account_id)
     account = Account.find(account_id)
     if not account:
-        about(status.HTTP_404_NOT_FOUND, f"Account by ID [{account_id}] not found")
+        return(status.HTTP_404_NOT_FOUND, f"Account by ID [{account_id}] not found")
     if account:
         account.delete()
     return "",status.HTTP_200_OK
