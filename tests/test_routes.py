@@ -136,7 +136,7 @@ class TestAccountService(TestCase):
     
     def test_get_account_not_found(self):
         """Should look for an account not there and indicate 404 not found"""
-        response = self.client.get(f"{BASE_URL}/0")
+        response = self.client.get(f"{BASE_URL}/'0'")
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
     
     def test_account_update(self):
