@@ -95,7 +95,7 @@ def update_accounts(account_id):
     #look for the account
     account = Account.find(account_id)
     if not account:
-        about(status.HTTP_404_NOT_FOUND, f"Account by ID [{account_id}] not found")
+        return (status.HTTP_404_NOT_FOUND, f"Account by ID [{account_id}] not found")
     
     #strip account
     account.deserialize(request.get_json())
