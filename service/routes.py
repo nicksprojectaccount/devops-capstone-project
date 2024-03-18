@@ -60,13 +60,19 @@ def create_accounts():
 ######################################################################
 # LIST ALL ACCOUNTS
 ######################################################################
-
-# ... place you code here to LIST accounts ...
+@app.route("/accounts", methods=["GET"])
+def get_account_list():
+    """This will list all accounts"""
+    app.logger.info("Request to list all accounts")
+    accounts = Account.all()
+    list_of_accounts = [account.serialize() for account in accounts]
+    return jsonify(list_of_accounts), status.HTTP_200_OK
 
 
 ######################################################################
 # READ AN ACCOUNT
 ######################################################################
+
 @app.route("/accounts/<int:account_id>", methods=["GET"])
 def get_accounts(account_id):
     """Reads an account based on the ID"""
@@ -102,6 +108,7 @@ def update_accounts(account_id):
 ######################################################################
 # DELETE AN ACCOUNT
 ######################################################################
+
 
 @app.route("/accounts/<int:account_id>", methods=["DELETE"])
 def delete_accounts(account_id):
