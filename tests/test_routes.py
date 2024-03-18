@@ -187,3 +187,8 @@ class TestAccountService(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         payload = response.get_json()
         self.assertEqual(len(payload), 10)
+    
+    def methods_not_allowed(self):
+        """It should not work with undefined methods"""
+        response = self.client.delete(BASE_URL)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
