@@ -208,3 +208,9 @@ class TestAccountService(TestCase):
             }
         for key, value in headders.items():
             self.assertEqual(response.headders.get(key), value)
+
+    def test_call_on_root(self):
+        """Calls root URL and asserts the presence of the header """
+        response = self.client.get('/', environ_overrides=HTTPS_ENVIRON)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.headers.get('Access-Control-Allow-Origin'), '*')
