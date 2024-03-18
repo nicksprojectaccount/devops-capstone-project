@@ -84,19 +84,19 @@ def get_accounts(account_id):
 
 @app.route("/accounts/<int:account_id>", methods=["PUT"])
 def update_accounts(account_id):
-    """ Update and account by ID"""
+    """Update and account by ID"""
     app.logger.info("Req to update account by id: %s", account_id)
     #look for the account
     account = Account.find(account_id)
     if not account:
-        about(status.HTTP_404_NOT_FOUND, f"Account by ID {account_id} not found")
+        about(status.HTTP_404_NOT_FOUND, f"Account by ID [{account_id}] not found")
     
     #strip account
     account.deserialize(request.get_json())
     #call update function
     account.update()
     #Give back feedback as account in serialize format and code
-    return {account.serialize(), status.HTTP_200_OK}
+    return account.serialize(), status.HTTP_200_OK
 
 
 ######################################################################
