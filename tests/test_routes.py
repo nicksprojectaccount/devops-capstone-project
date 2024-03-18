@@ -165,4 +165,16 @@ class TestAccountService(TestCase):
         #self.assertEqual(changed_account["name"], "Updated Name")
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
-        
+    def test_account_delete(self):
+        """Should delete an account when called by ID"""
+        # Make account using self functions
+        account = self._create_accounts(1)[0]
+        response = self.client.delete(f"{BASE_URL}/{account.id}")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+    
+    def test_account_delete_error(self):
+        """Should delete an account when called by ID with ERROR ID"""
+        # Make account using self functions
+        account = self._create_accounts(1)[0]
+        response = self.client.delete(f"{BASE_URL}/'-1")
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
