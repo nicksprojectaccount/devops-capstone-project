@@ -178,3 +178,12 @@ class TestAccountService(TestCase):
         account = self._create_accounts(1)[0]
         response = self.client.delete(f"{BASE_URL}/'-1")
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+    
+    def test_list_accounts(self):
+        """Should List All Accounts when called"""
+        # Make Accounts
+        accounts = self._create_accounts(10)
+        response = self.client.get(f"{BASE_URL}")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        payload = response.get_json()
+        self.assertEqual(len(payload), 10)
