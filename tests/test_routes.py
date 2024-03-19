@@ -151,8 +151,7 @@ class TestAccountService(TestCase):
         # update
         updated_account = response.get_json()
         updated_account["name"] = "Updated Name"
-        response_update = self.client.put(f"{BASE_URL}/{updated_account['id']}",
-         json=updated_account)
+        response_update = self.client.put(f"{BASE_URL}/{updated_account['id']}", json=updated_account)
         changed_account = response_update.get_json()
         self.assertEqual(changed_account["name"], "Updated Name")
 
