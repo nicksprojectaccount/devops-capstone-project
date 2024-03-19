@@ -125,8 +125,7 @@ class TestAccountService(TestCase):
             json=account.serialize(),
             content_type="test/html"
         )
-        self.assertEqual(response.status_code,
-                          status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
+        self.assertEqual(response.status_code, status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
 
     # ADD YOUR TEST CASES HERE ...
     def test_read_an_account(self):
@@ -178,14 +177,14 @@ class TestAccountService(TestCase):
     def test_account_delete_error(self):
         """Should delete an account when called by ID with ERROR ID"""
         # Make account using self functions
-        account = self._create_accounts(1)[0]
+        self._create_accounts(1)[0]
         response = self.client.delete(f"{BASE_URL}/'-1")
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
     def test_list_accounts(self):
         """Should List All Accounts when called"""
         # Make Accounts
-        accounts = self._create_accounts(10)
+        self._create_accounts(10)
         response = self.client.get(f"{BASE_URL}")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         payload = response.get_json()
